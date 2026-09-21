@@ -95,12 +95,27 @@ st.markdown(
     .stTextInput > div > div > input,
     .stTextArea > div > div > textarea,
     .stSelectbox > div > div > div {
-        background: rgba(255, 255, 255, 0.9);
+        background: #ffffff !important;
         border: 1px solid rgba(148, 163, 184, 0.4);
         border-radius: 14px;
         box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
         padding: 0.7rem 0.9rem;
-        color: #0f172a;
+        color: #000000 !important;
+    }
+
+    /* Labels in the main area (Email Information / Modify Email) - black */
+    .stTextInput label,
+    .stTextArea label,
+    .stSelectbox label {
+        color: #000000 !important;
+        font-weight: 600;
+    }
+
+    /* Placeholder text stays silver */
+    .stTextInput input::placeholder,
+    .stTextArea textarea::placeholder {
+        color: #c0c0c0 !important;
+        opacity: 1 !important;
     }
 
     .stTextInput > div > div > input:focus,
@@ -190,10 +205,10 @@ st.markdown(
     }
 
     [data-testid="stSidebar"] .stInfo {
-        background: rgba(255, 255, 255, 0.94);
+        background: #ffffff !important;
         border: 1px solid rgba(15, 23, 42, 0.08);
         border-radius: 12px;
-        color: #111827;
+        color: #000000;
     }
 
     [data-testid="stSidebar"] .stInfo p,
@@ -213,21 +228,27 @@ st.markdown(
         color: black !important;
     }
 
+    /* Arrow shown INSIDE the open sidebar (to collapse it) -> white */
     [data-testid="stSidebar"] button[title*="Collapse"],
     [data-testid="stSidebar"] button[aria-label*="Collapse"],
-    [data-testid="stSidebar"] .st-emotion-cache-1qg05tj,
-    [data-testid="stSidebar"] .st-emotion-cache-1v0mbdj {
+    [data-testid="stSidebarCollapseButton"],
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapseButton"] svg {
         color: white !important;
+        fill: white !important;
         border-color: rgba(255, 255, 255, 0.25) !important;
         background: transparent !important;
     }
 
-    [data-testid="stSidebarCollapseButton"] {
-        color: white !important;
-    }
-
-    .stApp .st-emotion-cache-1v0mbdj {
+    /* Arrow shown on the main page when the sidebar is hidden (to expand it) -> black */
+    [data-testid="stSidebarCollapsedControl"],
+    [data-testid="stSidebarCollapsedControl"] button,
+    [data-testid="stSidebarCollapsedControl"] svg,
+    [data-testid="collapsedControl"],
+    [data-testid="collapsedControl"] button,
+    [data-testid="collapsedControl"] svg {
         color: black !important;
+        fill: black !important;
     }
 
     [data-testid="stSidebar"] .st-emotion-cache-10trblm {
@@ -335,17 +356,20 @@ with col1:
 
     recipient = st.text_input(
         "Recipient",
-        placeholder="e.g. Client, Manager, Professor"
+        placeholder="e.g. Client, Manager, Professor",
+        key="recipient"
     )
 
     sender_name = st.text_input(
         "Your Name",
-        placeholder="e.g. Ali Hassan"
+        placeholder="e.g. Ali Hassan",
+        key="sender_name"
     )
 
     subject_hint = st.text_input(
         "Subject / Main Topic",
-        placeholder="e.g. Follow-up regarding my proposal"
+        placeholder="e.g. Follow-up regarding my proposal",
+        key="subject_hint"
     )
 
 
@@ -356,7 +380,8 @@ with col2:
         placeholder=(
             "Explain what you want to communicate..."
         ),
-        height=120
+        height=120,
+        key="purpose"
     )
 
     key_points = st.text_area(
@@ -365,7 +390,8 @@ with col2:
             "Write the important information "
             "you want to include..."
         ),
-        height=120
+        height=120,
+        key="key_points"
     )
 
 
@@ -478,17 +504,117 @@ Subject: [subject]
     return response.choices[0].message.content
 
 
+def modify_email(
+    existing_email,
+    modification_option,
+    additional_instructions
+):
+
+    prompt = f"""
+You are an expert professional email editor.
+
+You will be given an EXISTING EMAIL. Your task is to MODIFY
+that existing email according to the instructions below.
+Do NOT write a brand new email from scratch. Keep everything
+in the existing email that is not related to the requested
+change, and only adjust what the instructions ask for.
+
+==================================================
+EXISTING EMAIL
+==================================================
+
+{existing_email}
+
+==================================================
+REQUESTED MODIFICATION
+==================================================
+
+Modification Type:
+{modification_option}
+
+Additional Instructions:
+{additional_instructions if additional_instructions else "None"}
+
+==================================================
+INSTRUCTIONS
+==================================================
+
+1. Start from the existing email above, do not regenerate it from scratch.
+2. Apply the requested modification type to the email.
+3. If additional instructions are provided, follow them precisely.
+4. Keep the parts of the email not affected by the request unchanged.
+5. Keep it sounding natural and human-written.
+6. Do not explain your reasoning.
+7. Do not mention that AI modified the email.
+8. Return ONLY the final modified email.
+
+==================================================
+OUTPUT FORMAT
+==================================================
+
+Subject: [subject]
+
+[Greeting]
+
+[Email body]
+
+[Closing]
+"""
+
+    response = client.chat.completions.create(
+        model="openai/gpt-oss-120b",
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You are a professional email editing "
+                    "assistant who revises existing emails "
+                    "precisely according to instructions, "
+                    "without rewriting them from scratch."
+                )
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        temperature=0.6,
+        max_tokens=1200
+    )
+
+    return response.choices[0].message.content
+
+
 # ============================================================
 # GENERATE BUTTON
 # ============================================================
 
 st.divider()
 
-generate_button = st.button(
-    "✨ Generate Email",
-    type="primary",
-    use_container_width=True
-)
+gen_col, clear_col = st.columns([3, 1])
+
+with gen_col:
+    generate_button = st.button(
+        "✨ Generate Email",
+        type="primary",
+        use_container_width=True
+    )
+
+with clear_col:
+    clear_button = st.button(
+        "🗑️ Clear Everything",
+        use_container_width=True
+    )
+
+if clear_button:
+    for _key in [
+        "recipient", "sender_name", "subject_hint",
+        "purpose", "key_points", "generated_email",
+        "modify_option", "additional_instructions"
+    ]:
+        if _key in st.session_state:
+            del st.session_state[_key]
+    st.rerun()
 
 
 # ============================================================
@@ -601,6 +727,76 @@ if "generated_email" in st.session_state:
                     )
 
                     st.exception(e)
+
+    # ============================================================
+    # MODIFY EMAIL SECTION
+    # ============================================================
+
+    st.divider()
+
+    st.markdown(
+        '<div class="section-title">✏️ Modify Email</div>',
+        unsafe_allow_html=True
+    )
+
+    modify_option = st.selectbox(
+        "Modification",
+        [
+            "Make it more Professional",
+            "Make it more Friendly",
+            "Make it More Formal",
+            "Make it More Casual",
+            "Make it Shorter",
+            "Make it More Detailed",
+            "Fix Grammar",
+            "Improve Clarity",
+            "Make it More Persuasive",
+            "Change Introduction",
+            "Change Closing",
+            "Custom Modification"
+        ],
+        key="modify_option"
+    )
+
+    additional_instructions = st.text_area(
+        "Additional Instructions",
+        placeholder=(
+            "e.g. Make the email shorter and remove "
+            "the unnecessary second paragraph."
+        ),
+        height=100,
+        key="additional_instructions"
+    )
+
+    modify_button = st.button(
+        "✨ Modify Email",
+        type="primary",
+        use_container_width=True
+    )
+
+    if modify_button:
+
+        with st.spinner("✏️ Modifying your email..."):
+
+            try:
+
+                modified_email = modify_email(
+                    existing_email=st.session_state["generated_email"],
+                    modification_option=modify_option,
+                    additional_instructions=additional_instructions
+                )
+
+                st.session_state["generated_email"] = modified_email
+                st.rerun()
+
+            except Exception as e:
+
+                st.error(
+                    "Something went wrong while modifying "
+                    "the email."
+                )
+
+                st.exception(e)
 
 
 # ============================================================
