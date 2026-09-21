@@ -200,6 +200,15 @@ st.markdown(
         color: #111827 !important;
     }
 
+    .stTextArea label {
+        color: black !important;
+    }
+
+    .stTextArea > div > div > textarea {
+        background: white !important;
+        color: black !important;
+    }
+
     [data-testid="stSidebar"] button[title*="Collapse"],
     [data-testid="stSidebar"] button[aria-label*="Collapse"],
     [data-testid="stSidebar"] .st-emotion-cache-1qg05tj,
