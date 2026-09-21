@@ -196,7 +196,10 @@ st.markdown(
         color: #111827;
     }
 
-    [data-testid="stSidebar"] .stInfo p {
+    [data-testid="stSidebar"] .stInfo p,
+    [data-testid="stSidebar"] .stInfo div,
+    [data-testid="stSidebar"] .stInfo span,
+    [data-testid="stSidebar"] .stInfo strong {
         color: #111827 !important;
     }
 
