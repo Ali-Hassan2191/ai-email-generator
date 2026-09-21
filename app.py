@@ -162,7 +162,7 @@ st.markdown(
     [data-testid="stSidebar"] h3,
     [data-testid="stSidebar"] p,
     [data-testid="stSidebar"] .stMarkdown {
-        color: white !important;
+        color: black !important;
     }
 
     [data-testid="stSidebar"] .stSelectbox,
@@ -178,21 +178,25 @@ st.markdown(
 
     [data-testid="stSidebar"] .stSelectbox > div > div,
     [data-testid="stSidebar"] .stTextInput > div > div,
-    [data-testid="stSidebar"] .stTextArea > div > div {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+    [data-testid="stSidebar"] .stTextArea > div > div,
+    [data-testid="stSidebar"] .stSelectbox [role="combobox"],
+    [data-testid="stSidebar"] .stTextInput input,
+    [data-testid="stSidebar"] .stTextArea textarea {
+        background: white !important;
+        color: black !important;
+        border: 1px solid rgba(15, 23, 42, 0.15);
         border-radius: 12px;
     }
 
     [data-testid="stSidebar"] .stInfo {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(15, 23, 42, 0.08);
         border-radius: 12px;
-        color: rgba(255, 255, 255, 0.9);
+        color: #111827;
     }
 
     [data-testid="stSidebar"] .stInfo p {
-        color: rgba(255, 255, 255, 0.9) !important;
+        color: #111827 !important;
     }
 
     [data-testid="stSidebar"] .st-emotion-cache-10trblm {
@@ -213,7 +217,6 @@ st.markdown(
 
 st.markdown(
     '<div class="header-shell">'
-    '<div class="mini-badge">AI Writing Assistant</div>'
     '<div class="main-title">✉️ AI Email Generator</div>'
     '<div class="subtitle">Create professional, natural and personalized emails in seconds.</div>'
     '</div>',
@@ -318,7 +321,7 @@ with col1:
 with col2:
 
     purpose = st.text_area(
-        "What is the purpose of this email?",
+        "Purpose",
         placeholder=(
             "Explain what you want to communicate..."
         ),
@@ -326,7 +329,7 @@ with col2:
     )
 
     key_points = st.text_area(
-        "Important Points",
+        "Key Points",
         placeholder=(
             "Write the important information "
             "you want to include..."
