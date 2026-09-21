@@ -361,15 +361,36 @@ st.markdown(
 
     /* ========================================================
        SIDEBAR COLLAPSE BUTTON
+       Open state = white arrow
+       Closed state = black arrow
        ======================================================== */
 
-    [data-testid="stSidebarCollapseButton"] button {
+    button[aria-label*="Close sidebar"],
+    button[aria-label*="Collapse sidebar"],
+    button[aria-label*="Close side bar"],
+    button[aria-label*="Collapse side bar"] {
+        color: #ffffff !important;
+        background: transparent !important;
+    }
+
+    button[aria-label*="Close sidebar"] svg,
+    button[aria-label*="Collapse sidebar"] svg,
+    button[aria-label*="Close side bar"] svg,
+    button[aria-label*="Collapse side bar"] svg {
+        fill: #ffffff !important;
         color: #ffffff !important;
     }
 
-    [data-testid="stSidebarCollapseButton"] svg {
-        fill: #ffffff !important;
-        color: #ffffff !important;
+    button[aria-label*="Open sidebar"],
+    button[aria-label*="Open side bar"] {
+        color: #000000 !important;
+        background: transparent !important;
+    }
+
+    button[aria-label*="Open sidebar"] svg,
+    button[aria-label*="Open side bar"] svg {
+        fill: #000000 !important;
+        color: #000000 !important;
     }
 
     </style>
