@@ -33,32 +33,130 @@ st.markdown(
     """
     <style>
 
+    .stApp {
+        background: linear-gradient(135deg, #f5f7ff 0%, #eef6ff 35%, #fff8fb 100%);
+    }
+
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 1200px;
+    }
+
+    .header-shell {
+        padding: 1.4rem 1.5rem 1rem 1.5rem;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        margin-bottom: 1.5rem;
+    }
+
+    .mini-badge {
+        display: inline-block;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #5b5bd6;
+        background: rgba(91, 91, 214, 0.08);
+        border: 1px solid rgba(91, 91, 214, 0.15);
+        border-radius: 999px;
+        padding: 0.35rem 0.7rem;
+        margin-bottom: 0.75rem;
+    }
+
     .main-title {
         font-size: 42px;
-        font-weight: 700;
+        font-weight: 800;
         text-align: center;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
+        color: #111827;
+        letter-spacing: -0.04em;
     }
 
     .subtitle {
         text-align: center;
         font-size: 18px;
-        color: #666666;
-        margin-bottom: 30px;
+        color: #475569;
+        margin-bottom: 0.2rem;
+        line-height: 1.6;
     }
 
     .section-title {
         font-size: 24px;
-        font-weight: 600;
+        font-weight: 700;
         margin-top: 10px;
-        margin-bottom: 15px;
+        margin-bottom: 14px;
+        color: #0f172a;
+    }
+
+    .stTextInput > div > div > input,
+    .stTextArea > div > div > textarea,
+    .stSelectbox > div > div > div {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        border-radius: 14px;
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+        padding: 0.7rem 0.9rem;
+        color: #0f172a;
+    }
+
+    .stTextInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus,
+    .stSelectbox > div > div > div:focus {
+        border-color: rgba(99, 102, 241, 0.8);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
     }
 
     .stButton > button {
         width: 100%;
-        border-radius: 8px;
-        font-weight: 600;
-        height: 45px;
+        border: none;
+        border-radius: 14px;
+        font-weight: 700;
+        height: 48px;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        box-shadow: 0 12px 24px rgba(79, 70, 229, 0.22);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 15px 28px rgba(79, 70, 229, 0.3);
+    }
+
+    .stDownloadButton > button {
+        border-radius: 14px;
+        font-weight: 700;
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        background: white;
+        color: #1f2937;
+    }
+
+    .stAlert {
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+    }
+
+    [data-testid="stSidebar"] .css-1d391kg {
+        padding-top: 1.5rem;
+    }
+
+    [data-testid="stSidebar"] .st-emotion-cache-1v0mbdj {
+        color: white;
+    }
+
+    [data-testid="stSidebar"] .st-emotion-cache-10trblm {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
     }
 
     </style>
@@ -72,13 +170,10 @@ st.markdown(
 # ============================================================
 
 st.markdown(
-    '<div class="main-title">✉️ AI Email Generator</div>',
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    '<div class="subtitle">'
-    'Create professional, natural and personalized emails in seconds.'
+    '<div class="header-shell">'
+    '<div class="mini-badge">AI Writing Assistant</div>'
+    '<div class="main-title">✉️ AI Email Generator</div>'
+    '<div class="subtitle">Create professional, natural and personalized emails in seconds.</div>'
     '</div>',
     unsafe_allow_html=True
 )
