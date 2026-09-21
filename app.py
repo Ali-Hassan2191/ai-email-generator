@@ -123,7 +123,9 @@ st.markdown(
     .main .stSelectbox label,
     .main .stTextInput p,
     .main .stTextArea p,
-    .main .stSelectbox p {
+    .main .stSelectbox p,
+    .stMainContainer label,
+    .stMainContainer p {
         color: #000000 !important;
     }
 
@@ -133,7 +135,11 @@ st.markdown(
        ======================================================== */
 
     .main .stTextInput input,
-    .main .stTextArea textarea {
+    .main .stTextArea textarea,
+    .stMainContainer .stTextInput input,
+    .stMainContainer .stTextArea textarea,
+    .stMainContainer [data-baseweb="select"] > div,
+    .stMainContainer .stSelectbox [data-baseweb="select"] > div {
         background-color: #ffffff !important;
         color: #000000 !important;
         border: 1px solid rgba(148, 163, 184, 0.4) !important;
@@ -142,13 +148,17 @@ st.markdown(
     }
 
     .main .stTextInput input::placeholder,
-    .main .stTextArea textarea::placeholder {
+    .main .stTextArea textarea::placeholder,
+    .stMainContainer .stTextInput input::placeholder,
+    .stMainContainer .stTextArea textarea::placeholder {
         color: #64748b !important;
         opacity: 1;
     }
 
     .main .stTextInput input:focus,
-    .main .stTextArea textarea:focus {
+    .main .stTextArea textarea:focus,
+    .stMainContainer .stTextInput input:focus,
+    .stMainContainer .stTextArea textarea:focus {
         border-color: rgba(99, 102, 241, 0.8) !important;
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14) !important;
     }
@@ -233,16 +243,18 @@ st.markdown(
 
     /* ========================================================
        SIDEBAR DROPDOWN ARROW
-       
-       Dark sidebar + white arrow
-       When dropdown is closed, arrow remains white.
+       Dark sidebar + white arrow when open.
+       Black arrow when sidebar is hidden.
        ======================================================== */
 
-    [data-testid="stSidebar"]
-    [data-baseweb="select"]
-    svg {
-        fill: #000000 !important;
-        color: #000000 !important;
+    [data-testid="stSidebar"] [data-baseweb="select"] svg,
+    [data-testid="stSidebar"] [data-baseweb="select"] path,
+    [data-testid="stSidebar"] [data-baseweb="select"] polyline,
+    [data-testid="stSidebar"] [data-baseweb="select"] line,
+    [data-testid="stSidebar"] [data-baseweb="select"] circle {
+        fill: #ffffff !important;
+        stroke: #ffffff !important;
+        color: #ffffff !important;
     }
 
 
@@ -371,13 +383,19 @@ st.markdown(
     button[aria-label*="Collapse side bar"] {
         color: #ffffff !important;
         background: transparent !important;
+        border: none !important;
     }
 
     button[aria-label*="Close sidebar"] svg,
     button[aria-label*="Collapse sidebar"] svg,
     button[aria-label*="Close side bar"] svg,
-    button[aria-label*="Collapse side bar"] svg {
+    button[aria-label*="Collapse side bar"] svg,
+    button[aria-label*="Close sidebar"] path,
+    button[aria-label*="Collapse sidebar"] path,
+    button[aria-label*="Close side bar"] path,
+    button[aria-label*="Collapse side bar"] path {
         fill: #ffffff !important;
+        stroke: #ffffff !important;
         color: #ffffff !important;
     }
 
@@ -385,11 +403,15 @@ st.markdown(
     button[aria-label*="Open side bar"] {
         color: #000000 !important;
         background: transparent !important;
+        border: none !important;
     }
 
     button[aria-label*="Open sidebar"] svg,
-    button[aria-label*="Open side bar"] svg {
+    button[aria-label*="Open side bar"] svg,
+    button[aria-label*="Open sidebar"] path,
+    button[aria-label*="Open side bar"] path {
         fill: #000000 !important;
+        stroke: #000000 !important;
         color: #000000 !important;
     }
 
