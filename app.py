@@ -106,8 +106,14 @@ st.markdown(
     .stTextInput > div,
     .stTextArea > div,
     .stTextInput > div > div,
-    .stTextArea > div > div {
+    .stTextArea > div > div,
+    .stSelectbox > div,
+    .stSelectbox > div > div,
+    .stSelectbox [data-baseweb="select"],
+    .stSelectbox [data-baseweb="select"] > div,
+    .stSelectbox [data-baseweb="select"] div {
         background: #ffffff !important;
+        color: #000000 !important;
     }
 
     /* Labels in the main area (Email Information / Modify Email) - black */
@@ -211,19 +217,23 @@ st.markdown(
         border-radius: 12px;
     }
 
-    [data-testid="stSidebar"] .stInfo {
+    [data-testid="stSidebar"] .stInfo,
+    [data-testid="stSidebar"] .stAlert,
+    [data-testid="stSidebar"] [data-testid="stAlertContentInfo"] {
         background: #ffffff !important;
         border: 1px solid rgba(15, 23, 42, 0.08);
         border-radius: 12px;
-        color: #000000;
+        color: #000000 !important;
     }
 
     [data-testid="stSidebar"] .stInfo p,
     [data-testid="stSidebar"] .stInfo div,
     [data-testid="stSidebar"] .stInfo span,
     [data-testid="stSidebar"] .stInfo strong,
-    [data-testid="stSidebar"] .stInfo {
-        color: black !important;
+    [data-testid="stSidebar"] [data-testid="stAlertContentInfo"] p,
+    [data-testid="stSidebar"] [data-testid="stAlertContentInfo"] span,
+    [data-testid="stSidebar"] [data-testid="stAlertContentInfo"] div {
+        color: #000000 !important;
     }
 
     .stTextArea label {
