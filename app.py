@@ -25,6 +25,7 @@ GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 client = Groq(api_key=GROQ_API_KEY)
 
 
+
 # ============================================================
 # CUSTOM CSS
 # ============================================================
@@ -33,8 +34,17 @@ st.markdown(
     """
     <style>
 
+    /* ========================================================
+       MAIN APP
+       ======================================================== */
+
     .stApp {
-        background: linear-gradient(135deg, #f5f7ff 0%, #eef6ff 35%, #fff8fb 100%);
+        background: linear-gradient(
+            135deg,
+            #f5f7ff 0%,
+            #eef6ff 35%,
+            #fff8fb 100%
+        );
     }
 
     .block-container {
@@ -42,6 +52,11 @@ st.markdown(
         padding-bottom: 2rem;
         max-width: 1200px;
     }
+
+
+    /* ========================================================
+       HEADER
+       ======================================================== */
 
     .header-shell {
         padding: 1.4rem 1.5rem 1rem 1.5rem;
@@ -84,31 +99,203 @@ st.markdown(
         line-height: 1.6;
     }
 
+
+    /* ========================================================
+       SECTION TITLES
+       ======================================================== */
+
     .section-title {
         font-size: 24px;
         font-weight: 700;
         margin-top: 10px;
         margin-bottom: 14px;
-        color: #0f172a;
+        color: #0f172a !important;
     }
 
-    .stTextInput > div > div > input,
-    .stTextArea > div > div > textarea,
-    .stSelectbox > div > div > div {
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(148, 163, 184, 0.4);
-        border-radius: 14px;
+
+    /* ========================================================
+       MAIN AREA LABELS
+       ======================================================== */
+
+    /* All labels in main Email Information area */
+    .main .stTextInput label,
+    .main .stTextArea label,
+    .main .stSelectbox label,
+    .main .stTextInput p,
+    .main .stTextArea p,
+    .main .stSelectbox p {
+        color: #000000 !important;
+    }
+
+
+    /* ========================================================
+       MAIN INPUT FIELDS
+       ======================================================== */
+
+    .main .stTextInput input,
+    .main .stTextArea textarea {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid rgba(148, 163, 184, 0.4) !important;
+        border-radius: 14px !important;
         box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
-        padding: 0.7rem 0.9rem;
-        color: #0f172a;
     }
 
-    .stTextInput > div > div > input:focus,
-    .stTextArea > div > div > textarea:focus,
-    .stSelectbox > div > div > div:focus {
-        border-color: rgba(99, 102, 241, 0.8);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
+    .main .stTextInput input::placeholder,
+    .main .stTextArea textarea::placeholder {
+        color: #64748b !important;
+        opacity: 1;
     }
+
+    .main .stTextInput input:focus,
+    .main .stTextArea textarea:focus {
+        border-color: rgba(99, 102, 241, 0.8) !important;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14) !important;
+    }
+
+
+    /* ========================================================
+       MAIN SELECTBOX
+       ======================================================== */
+
+    .main .stSelectbox label {
+        color: #000000 !important;
+    }
+
+    .main .stSelectbox [data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(148, 163, 184, 0.4) !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR
+       ======================================================== */
+
+    [data-testid="stSidebar"] {
+        background: linear-gradient(
+            180deg,
+            #0f172a 0%,
+            #111827 100%
+        );
+    }
+
+    [data-testid="stSidebar"] .stMarkdown,
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label {
+        color: #ffffff !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR SELECTBOX
+       ======================================================== */
+
+    [data-testid="stSidebar"] .stSelectbox label {
+        color: #ffffff !important;
+    }
+
+    [data-testid="stSidebar"]
+    .stSelectbox
+    [data-baseweb="select"] {
+        background-color: #ffffff !important;
+        border-radius: 12px !important;
+    }
+
+    [data-testid="stSidebar"]
+    .stSelectbox
+    [data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border-radius: 12px !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR SELECTBOX TEXT
+       ======================================================== */
+
+    [data-testid="stSidebar"]
+    [data-baseweb="select"] span {
+        color: #000000 !important;
+    }
+
+    [data-testid="stSidebar"]
+    [data-baseweb="select"] input {
+        color: #000000 !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR DROPDOWN ARROW
+       
+       Dark sidebar + white arrow
+       When dropdown is closed, arrow remains white.
+       ======================================================== */
+
+    [data-testid="stSidebar"]
+    [data-baseweb="select"]
+    svg {
+        fill: #000000 !important;
+        color: #000000 !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR DROPDOWN MENU
+       ======================================================== */
+
+    [data-baseweb="popover"] {
+        background-color: #ffffff !important;
+    }
+
+    [data-baseweb="popover"] [role="option"] {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    [data-baseweb="popover"] [role="option"]:hover {
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR INFO / TIP BOX
+       ======================================================== */
+
+    [data-testid="stSidebar"] .stAlert {
+        background: #ffffff !important;
+        border: 1px solid rgba(15, 23, 42, 0.12) !important;
+        border-radius: 12px !important;
+        color: #000000 !important;
+    }
+
+    [data-testid="stSidebar"] .stAlert p,
+    [data-testid="stSidebar"] .stAlert div,
+    [data-testid="stSidebar"] .stAlert span,
+    [data-testid="stSidebar"] .stAlert strong {
+        color: #000000 !important;
+    }
+
+
+    /* ========================================================
+       SIDEBAR DIVIDER
+       ======================================================== */
+
+    [data-testid="stSidebar"] hr {
+        border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+
+    /* ========================================================
+       BUTTON
+       ======================================================== */
 
     .stButton > button {
         width: 100%;
@@ -116,10 +303,16 @@ st.markdown(
         border-radius: 14px;
         font-weight: 700;
         height: 48px;
-        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-        color: white;
+        background: linear-gradient(
+            135deg,
+            #4f46e5 0%,
+            #7c3aed 100%
+        );
+        color: white !important;
         box-shadow: 0 12px 24px rgba(79, 70, 229, 0.22);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
     }
 
     .stButton > button:hover {
@@ -127,13 +320,23 @@ st.markdown(
         box-shadow: 0 15px 28px rgba(79, 70, 229, 0.3);
     }
 
+
+    /* ========================================================
+       DOWNLOAD BUTTON
+       ======================================================== */
+
     .stDownloadButton > button {
         border-radius: 14px;
         font-weight: 700;
         border: 1px solid rgba(99, 102, 241, 0.2);
         background: white;
-        color: #1f2937;
+        color: #1f2937 !important;
     }
+
+
+    /* ========================================================
+       ALERTS
+       ======================================================== */
 
     .stAlert {
         border-radius: 14px;
@@ -141,105 +344,40 @@ st.markdown(
         border: 1px solid rgba(148, 163, 184, 0.25);
     }
 
-    [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+
+    /* ========================================================
+       TEXT AREA
+       ======================================================== */
+
+    .stTextArea textarea {
+        background-color: #ffffff !important;
+        color: #000000 !important;
     }
 
-    [data-testid="stSidebar"] .css-1d391kg {
-        padding-top: 1.5rem;
+    .stTextArea textarea::placeholder {
+        color: #64748b !important;
     }
 
-    [data-testid="stSidebar"] .stSelectbox label,
-    [data-testid="stSidebar"] .stTextInput label,
-    [data-testid="stSidebar"] .stTextArea label,
-    [data-testid="stSidebar"] .stNumberInput label,
-    [data-testid="stSidebar"] .stDateInput label,
-    [data-testid="stSidebar"] .stTimeInput label,
-    [data-testid="stSidebar"] .stRadio label,
-    [data-testid="stSidebar"] .stCheckbox label,
-    [data-testid="stSidebar"] h1,
-    [data-testid="stSidebar"] h2,
-    [data-testid="stSidebar"] h3,
-    [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] .stMarkdown,
-    [data-testid="stSidebar"] .stHeader {
-        color: white !important;
+
+    /* ========================================================
+       SIDEBAR COLLAPSE BUTTON
+       ======================================================== */
+
+    [data-testid="stSidebarCollapseButton"] button {
+        color: #ffffff !important;
     }
 
-    [data-testid="stSidebar"] .stSelectbox,
-    [data-testid="stSidebar"] .stTextInput,
-    [data-testid="stSidebar"] .stTextArea,
-    [data-testid="stSidebar"] .stNumberInput,
-    [data-testid="stSidebar"] .stDateInput,
-    [data-testid="stSidebar"] .stTimeInput,
-    [data-testid="stSidebar"] .stRadio,
-    [data-testid="stSidebar"] .stCheckbox {
-        margin-bottom: 0.8rem;
-    }
-
-    [data-testid="stSidebar"] .stSelectbox > div > div,
-    [data-testid="stSidebar"] .stTextInput > div > div,
-    [data-testid="stSidebar"] .stTextArea > div > div,
-    [data-testid="stSidebar"] .stSelectbox [role="combobox"],
-    [data-testid="stSidebar"] .stTextInput input,
-    [data-testid="stSidebar"] .stTextArea textarea {
-        background: white !important;
-        color: black !important;
-        border: 1px solid rgba(15, 23, 42, 0.15);
-        border-radius: 12px;
-    }
-
-    [data-testid="stSidebar"] .stInfo {
-        background: rgba(255, 255, 255, 0.94);
-        border: 1px solid rgba(15, 23, 42, 0.08);
-        border-radius: 12px;
-        color: #111827;
-    }
-
-    [data-testid="stSidebar"] .stInfo p,
-    [data-testid="stSidebar"] .stInfo div,
-    [data-testid="stSidebar"] .stInfo span,
-    [data-testid="stSidebar"] .stInfo strong,
-    [data-testid="stSidebar"] .stInfo {
-        color: black !important;
-    }
-
-    .stTextArea label {
-        color: black !important;
-    }
-
-    .stTextArea > div > div > textarea {
-        background: white !important;
-        color: black !important;
-    }
-
-    [data-testid="stSidebar"] button[title*="Collapse"],
-    [data-testid="stSidebar"] button[aria-label*="Collapse"],
-    [data-testid="stSidebar"] .st-emotion-cache-1qg05tj,
-    [data-testid="stSidebar"] .st-emotion-cache-1v0mbdj {
-        color: white !important;
-        border-color: rgba(255, 255, 255, 0.25) !important;
-        background: transparent !important;
-    }
-
-    [data-testid="stSidebarCollapseButton"] {
-        color: white !important;
-    }
-
-    .stApp .st-emotion-cache-1v0mbdj {
-        color: black !important;
-    }
-
-    [data-testid="stSidebar"] .st-emotion-cache-10trblm {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 14px;
+    [data-testid="stSidebarCollapseButton"] svg {
+        fill: #ffffff !important;
+        color: #ffffff !important;
     }
 
     </style>
     """,
     unsafe_allow_html=True
 )
+
+
 
 
 # ============================================================
