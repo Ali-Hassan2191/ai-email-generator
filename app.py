@@ -149,8 +149,50 @@ st.markdown(
         padding-top: 1.5rem;
     }
 
-    [data-testid="stSidebar"] .st-emotion-cache-1v0mbdj {
-        color: white;
+    [data-testid="stSidebar"] .stSelectbox label,
+    [data-testid="stSidebar"] .stTextInput label,
+    [data-testid="stSidebar"] .stTextArea label,
+    [data-testid="stSidebar"] .stNumberInput label,
+    [data-testid="stSidebar"] .stDateInput label,
+    [data-testid="stSidebar"] .stTimeInput label,
+    [data-testid="stSidebar"] .stRadio label,
+    [data-testid="stSidebar"] .stCheckbox label,
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] .stMarkdown {
+        color: white !important;
+    }
+
+    [data-testid="stSidebar"] .stSelectbox,
+    [data-testid="stSidebar"] .stTextInput,
+    [data-testid="stSidebar"] .stTextArea,
+    [data-testid="stSidebar"] .stNumberInput,
+    [data-testid="stSidebar"] .stDateInput,
+    [data-testid="stSidebar"] .stTimeInput,
+    [data-testid="stSidebar"] .stRadio,
+    [data-testid="stSidebar"] .stCheckbox {
+        margin-bottom: 0.8rem;
+    }
+
+    [data-testid="stSidebar"] .stSelectbox > div > div,
+    [data-testid="stSidebar"] .stTextInput > div > div,
+    [data-testid="stSidebar"] .stTextArea > div > div {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+    }
+
+    [data-testid="stSidebar"] .stInfo {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    [data-testid="stSidebar"] .stInfo p {
+        color: rgba(255, 255, 255, 0.9) !important;
     }
 
     [data-testid="stSidebar"] .st-emotion-cache-10trblm {
