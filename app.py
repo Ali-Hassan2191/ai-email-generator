@@ -199,8 +199,9 @@ st.markdown(
     [data-testid="stSidebar"] .stInfo p,
     [data-testid="stSidebar"] .stInfo div,
     [data-testid="stSidebar"] .stInfo span,
-    [data-testid="stSidebar"] .stInfo strong {
-        color: #111827 !important;
+    [data-testid="stSidebar"] .stInfo strong,
+    [data-testid="stSidebar"] .stInfo {
+        color: black !important;
     }
 
     .stTextArea label {
@@ -218,6 +219,15 @@ st.markdown(
     [data-testid="stSidebar"] .st-emotion-cache-1v0mbdj {
         color: white !important;
         border-color: rgba(255, 255, 255, 0.25) !important;
+        background: transparent !important;
+    }
+
+    [data-testid="stSidebarCollapseButton"] {
+        color: white !important;
+    }
+
+    .stApp .st-emotion-cache-1v0mbdj {
+        color: black !important;
     }
 
     [data-testid="stSidebar"] .st-emotion-cache-10trblm {
