@@ -92,8 +92,8 @@ st.markdown(
         color: #0f172a;
     }
 
-    .stTextInput > div > div > input,
-    .stTextArea > div > div > textarea,
+    .stTextInput input,
+    .stTextArea textarea,
     .stSelectbox > div > div > div {
         background: #ffffff !important;
         border: 1px solid rgba(148, 163, 184, 0.4);
@@ -101,6 +101,13 @@ st.markdown(
         box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
         padding: 0.7rem 0.9rem;
         color: #000000 !important;
+    }
+
+    .stTextInput > div,
+    .stTextArea > div,
+    .stTextInput > div > div,
+    .stTextArea > div > div {
+        background: #ffffff !important;
     }
 
     /* Labels in the main area (Email Information / Modify Email) - black */
@@ -111,10 +118,10 @@ st.markdown(
         font-weight: 600;
     }
 
-    /* Placeholder text stays silver */
+    /* Placeholder text - dark silver */
     .stTextInput input::placeholder,
     .stTextArea textarea::placeholder {
-        color: #c0c0c0 !important;
+        color: #6b7280 !important;
         opacity: 1 !important;
     }
 
@@ -223,32 +230,47 @@ st.markdown(
         color: black !important;
     }
 
-    .stTextArea > div > div > textarea {
+    .stTextArea textarea {
         background: white !important;
         color: black !important;
+    }
+
+    /* Generated Email output box - light silver background, black text */
+    .stTextArea textarea[aria-label="Your Email"] {
+        background: #e2e5ea !important;
+        color: #000000 !important;
     }
 
     /* Arrow shown INSIDE the open sidebar (to collapse it) -> white */
     [data-testid="stSidebar"] button[title*="Collapse"],
     [data-testid="stSidebar"] button[aria-label*="Collapse"],
     [data-testid="stSidebarCollapseButton"],
+    [data-testid="stSidebarCollapseButton"] *,
     [data-testid="stSidebarCollapseButton"] button,
-    [data-testid="stSidebarCollapseButton"] svg {
+    [data-testid="stSidebarCollapseButton"] svg,
+    [data-testid="stSidebarCollapseButton"] span,
+    [data-testid="baseButton-headerNoPadding"] span[data-testid="stIconMaterial"] {
         color: white !important;
         fill: white !important;
+        stroke: white !important;
         border-color: rgba(255, 255, 255, 0.25) !important;
         background: transparent !important;
     }
 
     /* Arrow shown on the main page when the sidebar is hidden (to expand it) -> black */
     [data-testid="stSidebarCollapsedControl"],
+    [data-testid="stSidebarCollapsedControl"] *,
     [data-testid="stSidebarCollapsedControl"] button,
     [data-testid="stSidebarCollapsedControl"] svg,
+    [data-testid="stSidebarCollapsedControl"] span,
     [data-testid="collapsedControl"],
+    [data-testid="collapsedControl"] *,
     [data-testid="collapsedControl"] button,
-    [data-testid="collapsedControl"] svg {
+    [data-testid="collapsedControl"] svg,
+    [data-testid="collapsedControl"] span {
         color: black !important;
         fill: black !important;
+        stroke: black !important;
     }
 
     [data-testid="stSidebar"] .st-emotion-cache-10trblm {
