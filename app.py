@@ -161,8 +161,9 @@ st.markdown(
     [data-testid="stSidebar"] h2,
     [data-testid="stSidebar"] h3,
     [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] .stMarkdown {
-        color: black !important;
+    [data-testid="stSidebar"] .stMarkdown,
+    [data-testid="stSidebar"] .stHeader {
+        color: white !important;
     }
 
     [data-testid="stSidebar"] .stSelectbox,
@@ -197,6 +198,14 @@ st.markdown(
 
     [data-testid="stSidebar"] .stInfo p {
         color: #111827 !important;
+    }
+
+    [data-testid="stSidebar"] button[title*="Collapse"],
+    [data-testid="stSidebar"] button[aria-label*="Collapse"],
+    [data-testid="stSidebar"] .st-emotion-cache-1qg05tj,
+    [data-testid="stSidebar"] .st-emotion-cache-1v0mbdj {
+        color: white !important;
+        border-color: rgba(255, 255, 255, 0.25) !important;
     }
 
     [data-testid="stSidebar"] .st-emotion-cache-10trblm {
